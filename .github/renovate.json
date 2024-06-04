@@ -1,0 +1,24 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": ["config:base"],
+  "dependencyDashboard": false,
+  "packageRules": [
+    {
+      "groupName": "Kotlin & KSP",
+      "groupSlug": "kotlin",
+      "matchPackagePrefixes": ["com.google.devtools.ksp"],
+      "matchPackagePatterns": ["org.jetbrains.kotlin.*"]
+    },
+    {
+      "matchUpdateTypes": ["minor", "patch"],
+      "automerge": true
+    }
+  ],
+  "lockFileMaintenance": {
+    "enabled": true,
+    "extends": ["schedule:weekly"]
+  },
+  "nix": {
+    "enabled": true
+  }
+}
