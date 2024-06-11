@@ -1,6 +1,6 @@
 {
   "$schema": "https://docs.renovatebot.com/renovate-schema.json",
-  "extends": ["config:base"],
+  "extends": ["config:recommended"],
   "dependencyDashboard": false,
   "packageRules": [
     {
@@ -20,5 +20,17 @@
   },
   "nix": {
     "enabled": true
-  }
+  },
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update Java Version",
+      "fileMatch": ["(^|.*/)build.gradle.kts$"],
+      "matchStrings": ["jvmToolchain\\((?<currentValue>.*)\\)"],
+      "datasourceTemplate": "github-tags",
+      "depNameTemplate": "openjdk/jdk",
+      "extractVersionTemplate": "^jdk-(?<version>.+?)-ga$",
+      "versioningTemplate": "loose"
+    }
+  ]
 }
